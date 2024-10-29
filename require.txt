@@ -1,0 +1,9 @@
+nltk.download('names')
+nltk.download('wordnet')
+
+in python 2 iteritems, CountVectorizer.get_feature_names()
+
+in python 3 items, CountVectorizer.get_feature_names_out()
+
+
+package
