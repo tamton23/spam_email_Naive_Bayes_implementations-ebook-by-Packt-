@@ -5,6 +5,24 @@
     ls -l enron1/ham/*.txt |wc -l to check folder constrain file NoSpam
     ls -l enron1/spam/*.txt |wc -l to check folder constrain file Spam
 # Implement Module
-    1. use exec(open("file.py").read()) to run module or create init call module
-    2. exec Module loadSpamEmail and loadHamEmail with label 0 and 1
-    3. use Module clean date to clean files email.
+step: loadSpamEmails_labels.py -> loadHamEmails_labels.py -> clean_data.py -> exreacting_features.py -> prior.py -> likelihood.py -> posterior.py (test on some content emails)
+
+1. use exec(open("file.py").read()) to run module or create init call module.
+        exp: exec(open("loadHamEmails_labels.py).read())
+2. exec Module loadSpamEmail and loadHamEmail with label 0 and 1.
+       -> Here there are two variables e_emails(length = 5172) and labels(length = 2)
+   #
+        1. >>>exec(open("loadSamEmails_labels.py").read())
+        2. >>>exec(open("loadHamEmails_labels.py").read())
+        3. >>>print(f"length emails: {len(e_mails)} \nlength labels: {len(labels)}")
+4. use Module clean date to clean files email. 
+       -> Module includes func clean_text(parameter is e_mails) to reformat characters and formats in each email file.
+    #
+       1.>>>exec(open("clean_data.py").read())
+       2.>>>cleaned_emails = clean_text(e_mails)
+   and we can show one content of email.
+    #
+       1.>>>print(cleaned_emails[0])
+6. after we format data, we will extracting feature, and file "extracting_features.py"  will do its job.
+        -> the "max_feature" parameter set 500 and it can be modified for better accuracy.
+7. Starting with the prior, we first group the data by label: use module prior.py
