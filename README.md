@@ -10,7 +10,7 @@ step: loadSpamEmails_labels.py -> loadHamEmails_labels.py -> clean_data.py -> ex
 1. use exec(open("file.py").read()) to run module or create init call module.
         exp: exec(open("loadHamEmails_labels.py).read())
 2. exec Module loadSpamEmail and loadHamEmail with label 0 and 1.
-       -> Here there are two variables e_emails(length = 5172) and labels(length = 2)
+       -> Here there are two variables e_emails(length = 5172) and labels(length = 5172)
    #
         1. >>>exec(open("loadSamEmails_labels.py").read())
         2. >>>exec(open("loadHamEmails_labels.py").read())
