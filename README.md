@@ -11,7 +11,7 @@ step: loadSpamEmails_labels.py -> loadHamEmails_labels.py -> clean_data.py -> ex
 
 1. use exec(open("file.py").read()) to run module or create init call module.
         exp: exec(open("loadHamEmails_labels.py).read())
-2. exec Module loadSpamEmail and loadHamEmail with label 0 and 1.
+2. exec Module loadSpamEmail and loadHamEmail with label have elements is 0(ham email) and 1(spam email).
        -> Here there are two variables e_emails(length = 5172) and labels(length = 5172)
    #
         exec(open("loadSamEmails_labels.py").read())
@@ -27,4 +27,34 @@ step: loadSpamEmails_labels.py -> loadHamEmails_labels.py -> clean_data.py -> ex
        print(cleaned_emails[0])
 6. after we format data, we will extracting feature, and file "extracting_features.py"  will do its job.
         -> the "max_feature" parameter set 500 and it can be modified for better accuracy.
-7. Starting with the prior, we first group the data by label: use module prior.py
+   #
+       exec(open("extracting_features.py").read())
+8. Starting with the prior, we first group the data by label: use module prior.py
+   # P(S)
+       exec(open("prior.py").read())
+       prior = get_prior(labels_index)
+9. likelihood: probability of that feature appearing on the label. P(feature(word)|label)
+   # P(Xi|S)
+       exec(open("prior.py").read())
+       smoothing = 1
+       likelihood = get_likelihood(term_docs,label_index, smoothing)
+    smoothing parameter: which can also be 0 for no smoothing and any other positive value, as long as high classification performance is achieved: 
+   # check 5 probability of feature - Ham emails
+       print(likelihood[0][:5])
+   # and 5 probability of feature - Spam emails
+       print(likelihood[1][:5])
+10. posterior: probabilities P(feature | class)
+    #
+        exec(open("posterior.py").read())
+        # test two emails spam and ham
+        email_test = [e_mail[0], e_mails[5000]]
+        cleaned_test = clean_text(email_test)
+        term_docs_test = cv.transform(cleaned_test)
+        posterior = get_posterior(term_docs_test, prior, likelihood)
+        print(posterior)
+    first email is spam email and second email is ham emails
+11. train naive Bayes
+    #
+        exec(open("train_naiveBayes_emails.py").read())
+    The naive Bayes classifier we just developed line by line correctly classifies ~=
+92% of emails!
