@@ -38,12 +38,14 @@ step: loadSpamEmails_labels.py -> loadHamEmails_labels.py -> clean_data.py -> ex
        exec(open("prior.py").read())
        smoothing = 1
        likelihood = get_likelihood(term_docs,label_index, smoothing)
-    smoothing parameter: which can also be 0 for no smoothing and any other positive value, as long as high classification performance is achieved: 
-   # check 5 probability of feature - Ham emails
+   smoothing parameter: which can also be 0 for no smoothing and any other positive value, as long as high classification performance is achieved: 
+   check 5 probability of feature - Ham emails
+   #
        print(likelihood[0][:5])
-   # and 5 probability of feature - Spam emails
+   and 5 probability of feature - Spam emails
+   # 
        print(likelihood[1][:5])
-10. posterior: probabilities P(feature | class)
+11. posterior: probabilities P(feature | class)
     #
         exec(open("posterior.py").read())
         # test two emails spam and ham
@@ -53,7 +55,7 @@ step: loadSpamEmails_labels.py -> loadHamEmails_labels.py -> clean_data.py -> ex
         posterior = get_posterior(term_docs_test, prior, likelihood)
         print(posterior)
     first email is spam email and second email is ham emails
-11. train naive Bayes
+12. train naive Bayes
     #
         exec(open("train_naiveBayes_emails.py").read())
     The naive Bayes classifier we just developed line by line correctly classifies ~=
